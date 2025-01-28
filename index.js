@@ -33,7 +33,7 @@ function getComputerChoice() {
         
     }
     else {
-        console.log("putz");
+        console.log("putz")
     }
 }
 
@@ -79,7 +79,7 @@ function getHumanChoice(){
     }
       
     else{
-        console.log("Por favor,insira uma escolha válida!");
+        console.log("Por favor,insira uma escolha válida!")
     }
 }
 
@@ -137,11 +137,66 @@ function playRound(humanChoice, computerChoice){
         console.log("Tie!");
     }
     else{
-        console.log("putz");
+        console.log("putz")
     }
 }
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
-playRound(humanChoice, computerChoice);
-console.log(humanScore, computerScore);
+//Create function playGame
+//Call functions of getHumanChoice and getComputerChoice
+//Call function of playRound
+//Repeat this five times
+//If humanScore > computerScore
+//Human win!
+//else if computerScore < humanScore
+//computer win!
+//else 
+// TIE!
+
+function playGame(){
+    //Round 1
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(humanScore, computerScore);
+
+    //Round 2
+
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(humanScore, computerScore);
+
+    //Round 3
+
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(humanScore, computerScore);
+
+    //Round 4
+
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(humanScore, computerScore);
+
+    //round 5
+
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    console.log(humanScore, computerScore);
+
+    if(humanScore > computerScore){
+        console.log("Human wins!");
+    }
+    else if(humanScore < computerScore){
+        console.log("Computer Wins! Womp Womp");
+    }
+    else{
+        console.log("Nobody Wins! try again");
+    }
+
+}
+
+playGame();
