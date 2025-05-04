@@ -5,15 +5,19 @@ let computerScore = 0;
 const btnPedra = document.querySelector("#btnPedra");
 const btnPapel = document.querySelector("#btnPapel");
 const btnTesoura = document.querySelector("#btnTesoura");
+const resultBox = document.querySelector("#resultBox");
+const resultText = document.createElement("p");
+
+
 
 btnPedra.addEventListener("click", function() {
-    playRound("Rock", getComputerChoice());
+    playRound("Pedra", getComputerChoice());
 });
 btnPapel.addEventListener("click", function() {
-    playRound("Paper", getComputerChoice());
+    playRound("Papel", getComputerChoice());
 });
 btnTesoura.addEventListener("click", function() {
-    playRound("Scissors", getComputerChoice());
+    playRound("Tesoura", getComputerChoice());
 });
 
 
@@ -21,16 +25,16 @@ btnTesoura.addEventListener("click", function() {
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() *  3) + 1;
     if (computerChoice === 1){
-        computerChoice = "Rock";
+        computerChoice = "Pedra";
         return computerChoice;
     }
     else if(computerChoice === 2){
-        computerChoice = "Paper";
+        computerChoice = "Papel";
         return computerChoice;
         
     }
     else if(computerChoice === 3){
-        computerChoice = "Scissors";
+        computerChoice = "Tesoura";
         return computerChoice;
         
     }
@@ -39,60 +43,51 @@ function getComputerChoice() {
     }
 }
 
+//resultText.textContent = "A escolha do humano foi pedra e a do computador tesoura";
+//resultBox.appendChild(resultText);
 
 function playRound(humanChoice, computerChoice){
-  
-    if(humanChoice === "Rock" && computerChoice === "Scissors"){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("You win! Rock beats Scissors");
+  let resultMessage = "";
+    if(humanChoice === "Pedra" && computerChoice === "Tesoura"){
+        resultMessage = "Você venceu essa rodada! Pedra vence Tesoura";
         humanScore++;
        
     }
-    else if(humanChoice === "Scissors" && computerChoice === "Paper"){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("You win! Scissors beats Paper");
+    else if(humanChoice === "Tesoura" && computerChoice === "Papel"){
+        //console.log(`Escolha do humano: ${humanChoice}`);
+        resultMessage = "Você venceu essa rodada! Tesoura vence Papel";
         humanScore++;
  
     }
-    else if(humanChoice === "Paper" && computerChoice === "Rock"){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("You win! Paper beats Rock");
+    else if(humanChoice === "Papel" && computerChoice === "Pedra"){
+        resultMessage = "Você venceu essa rodada! Papel vence Pedra";
         humanScore++;
        
     }
     //situações de perca
-    else if(humanChoice === "Rock" && computerChoice === "Paper"){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("You lose! Womp womp, paper beats Rock");
+    else if(humanChoice === "Pedra" && computerChoice === "Papel"){
+        resultMessage = "Você Perdeu essa rodada! Pedra vence papel";
         computerScore++;
         
     }
-    else if(humanChoice === "Paper" && computerChoice === "Scissors"){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("You lose! Womp womp, Scissors beats Paper");
+    else if(humanChoice === "Papel" && computerChoice === "Tesoura"){
+        resultMessage = "Você Perdeu essa rodada! Tesoura vence Papel";
         computerScore++;
        
     }
-    else if(humanChoice === "Scissors" && computerChoice === "Rock"){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("You lose! Womp womp, Rock beats Scissors");
+    else if(humanChoice === "Tesoura" && computerChoice === "Pedra"){
+        resultMessage = "Você Perdeu essa rodada! Pedra vence Tesoura";
         computerScore++;
         
     }
     else if(humanChoice === computerChoice ){
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("Tie!");
+        resultMessage = "Empate!";
     }
     else{
-        console.log(`Escolha do humano: ${humanChoice}`);
-        console.log(`Escolha do computador: ${computerChoice}`);
-        console.log("putz")
+        resultMessage = "Putz, algo deu errado, culpe o programador";
     }
+
+    resultText.textContent = `A sua escolha foi: ${humanChoice} e a do computador foi: ${computerChoice}. ${resultMessage} `
+    
+    resultBox.appendChild(resultText);
 }
