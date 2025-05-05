@@ -5,8 +5,14 @@ let computerScore = 0;
 const btnPedra = document.querySelector("#btnPedra");
 const btnPapel = document.querySelector("#btnPapel");
 const btnTesoura = document.querySelector("#btnTesoura");
+
 const resultBox = document.querySelector("#resultBox");
 const resultText = document.createElement("p");
+
+const scoreBox = document.querySelector("#scoreBox");
+const computerScoreText = document.createElement("p");
+const humanScoreText = document.createElement("p");
+
 
 
 
@@ -43,31 +49,36 @@ function getComputerChoice() {
     }
 }
 
-//resultText.textContent = "A escolha do humano foi pedra e a do computador tesoura";
-//resultBox.appendChild(resultText);
+
 
 function playRound(humanChoice, computerChoice){
   let resultMessage = "";
+ 
     if(humanChoice === "Pedra" && computerChoice === "Tesoura"){
         resultMessage = "Você venceu essa rodada! Pedra vence Tesoura";
+        
         humanScore++;
+        scoreResult = humanScore, computerScore;
        
     }
     else if(humanChoice === "Tesoura" && computerChoice === "Papel"){
         //console.log(`Escolha do humano: ${humanChoice}`);
         resultMessage = "Você venceu essa rodada! Tesoura vence Papel";
         humanScore++;
+        scoreResult = humanScore, computerScore;
  
     }
     else if(humanChoice === "Papel" && computerChoice === "Pedra"){
         resultMessage = "Você venceu essa rodada! Papel vence Pedra";
         humanScore++;
+        scoreResult = humanScore, computerScore;
        
     }
     //situações de perca
     else if(humanChoice === "Pedra" && computerChoice === "Papel"){
         resultMessage = "Você Perdeu essa rodada! Pedra vence papel";
         computerScore++;
+        scoreResult = humanScore, computerScore;
         
     }
     else if(humanChoice === "Papel" && computerChoice === "Tesoura"){
@@ -90,4 +101,11 @@ function playRound(humanChoice, computerChoice){
     resultText.textContent = `A sua escolha foi: ${humanChoice} e a do computador foi: ${computerChoice}. ${resultMessage} `
     
     resultBox.appendChild(resultText);
+
+    humanScoreText.textContent = `Sua pontuação: ${humanScore}`;
+    computerScoreText.textContent = `Pontuação do computador: ${computerScore}`;
+
+    scoreBox.appendChild(humanScoreText);
+    scoreBox.appendChild(computerScoreText);
+
 }
